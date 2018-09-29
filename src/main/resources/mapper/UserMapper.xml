@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chao.com.cn.relationship.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="chao.com.cn.relationship.model.User">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="enterpriseid" jdbcType="INTEGER" property="enterpriseid" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="employeeid" jdbcType="INTEGER" property="employeeid" />
+    <result column="employeename" jdbcType="VARCHAR" property="employeename" />
+    <result column="inputmainid" jdbcType="INTEGER" property="inputmainid" />
+    <result column="inputmainname" jdbcType="VARCHAR" property="inputmainname" />
+    <result column="inputmaindate" jdbcType="TIMESTAMP" property="inputmaindate" />
+    <result column="logintime" jdbcType="TIMESTAMP" property="logintime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, enterpriseid, account, password, username, employeeid, employeename, inputmainid, 
+    inputmainname, inputmaindate, logintime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="chao.com.cn.relationship.model.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where account = #{account,jdbcType=VARCHAR}
+      and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="chao.com.cn.relationship.model.User">
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+      and enterpriseid = #{enterpriseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="chao.com.cn.relationship.model.User">
+    insert into user (userid, enterpriseid, account, 
+      password, username, employeeid, 
+      employeename, inputmainid, inputmainname, 
+      inputmaindate, logintime)
+    values (#{userid,jdbcType=INTEGER}, #{enterpriseid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{employeeid,jdbcType=INTEGER}, 
+      #{employeename,jdbcType=VARCHAR}, #{inputmainid,jdbcType=INTEGER}, #{inputmainname,jdbcType=VARCHAR}, 
+      #{inputmaindate,jdbcType=TIMESTAMP}, #{logintime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="chao.com.cn.relationship.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="enterpriseid != null">
+        enterpriseid,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="employeeid != null">
+        employeeid,
+      </if>
+      <if test="employeename != null">
+        employeename,
+      </if>
+      <if test="inputmainid != null">
+        inputmainid,
+      </if>
+      <if test="inputmainname != null">
+        inputmainname,
+      </if>
+      <if test="inputmaindate != null">
+        inputmaindate,
+      </if>
+      <if test="logintime != null">
+        logintime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseid != null">
+        #{enterpriseid,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="employeename != null">
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="inputmainid != null">
+        #{inputmainid,jdbcType=INTEGER},
+      </if>
+      <if test="inputmainname != null">
+        #{inputmainname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputmaindate != null">
+        #{inputmaindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="chao.com.cn.relationship.model.User">
+    update user
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        employeeid = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="employeename != null">
+        employeename = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="inputmainid != null">
+        inputmainid = #{inputmainid,jdbcType=INTEGER},
+      </if>
+      <if test="inputmainname != null">
+        inputmainname = #{inputmainname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputmaindate != null">
+        inputmaindate = #{inputmaindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintime != null">
+        logintime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+      and enterpriseid = #{enterpriseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="chao.com.cn.relationship.model.User">
+    update user
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      employeeid = #{employeeid,jdbcType=INTEGER},
+      employeename = #{employeename,jdbcType=VARCHAR},
+      inputmainid = #{inputmainid,jdbcType=INTEGER},
+      inputmainname = #{inputmainname,jdbcType=VARCHAR},
+      inputmaindate = #{inputmaindate,jdbcType=TIMESTAMP},
+      logintime = #{logintime,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=INTEGER}
+      and enterpriseid = #{enterpriseid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="countByExample" parameterType="chao.com.cn.relationship.model.User" resultType="java.lang.Integer">
+    select count(*) from user
+  </select>
+
+</mapper>
